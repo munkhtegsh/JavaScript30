@@ -8,17 +8,17 @@
 
 
     <div class="clock">
-      <div class="clock-face">
-        <div class="hand hour-hand"></div>
-        <div class="hand min-hand"></div>
-        <div class="hand second-hand"></div>
+      <div class="clock-face"> 12
+        <div class="hand hour-hand">hour</div>
+        <div class="hand min-hand">min</div>
+        <div class="hand second-hand">second</div>
       </div>
     </div>
 
 
   <style>
     html {
-      background:#018DED url(http://unsplash.it/1500/1000?image=881&blur=50);
+      background:rgb(64, 73, 79) url(http://unsplash.it/1500/1000?image=881&blur=50);
       background-size:cover;
       font-family:'helvetica neue';
       text-align: center;
@@ -42,11 +42,7 @@
       margin:50px auto;
       position: relative;
       padding:2rem;
-      box-shadow:
-        0 0 0 4px rgba(0,0,0,0.1),
-        inset 0 0 0 3px #EFEFEF,
-        inset 0 0 10px black,
-        0 0 10px rgba(0,0,0,0.2);
+   
     }
 
     .clock-face {
@@ -62,12 +58,43 @@
       background:black;
       position: absolute;
       top:50%;
+      transform-origin: 100%;
+      transform: rotate(40deg);
+      transition: all 0.05s;
+      transition-timing-function: 
+      cubic-bezier(0.1, 2.7, 0.58, 1);
     }
 
   </style>
 
   <script>
+    var minHand = document.querySelector('.min-hand');
+    var hourHand = document.querySelector('.hour-hand');
+    var secondHand = document.querySelector('.second-hand');
+    var hands = document.querySelectorAll('.hand');
 
+    function setDate() {
+      const now = new Date();
+      const seconds = now.getSeconds();
+      const secondsDegrees = ((seconds / 60) * 360) + 90;
+      secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+      
+      const minuts = now.getMinutes();
+      const minDegrees = (minuts / 60) * 360 + 90;
+      minHand.style.transform = `rotate(${minDegrees}deg)`;
+
+      const hour = now.getHours();
+      const hourDegrees = (hour / 12) * 360 + 90;
+      hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+
+      if(secondsDegrees === 90) {
+        hands.forEach(hand => hand.style.transition = 'none')
+      } else {
+          hands.forEach(hand => hand.style.transition = 'none')
+      }
+    }
+
+    setInterval(setDate, 1000);
 
   </script>
 </body>
