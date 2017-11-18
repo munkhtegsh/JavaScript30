@@ -31,7 +31,8 @@
 
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
-
+    var birthdayPeople = inventors.filter(e => e.year >= 1500 && e.year <= 1600);
+    //console.log(birthdayPeople);
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
 
@@ -46,10 +47,20 @@
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
+    // var category = document.querySelector('.mw-category');
+    // var arr = Array.from(category.querySelectorAll('a'));
+    // var links = arr.filter(key => key.textContent);
+    // var de = links.map((el) => el.indexOf('De') > -1);
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
-
+    var sorted = people.sort((a,b) => {
+      var [firstA, lastA] = a.split(', ');
+      var [firstB, lastB] = b.split(', ');
+      //console.log(lastA)
+      return lastA > lastB ? 1 : -1; 
+    })
+    console.table(sorted)
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
