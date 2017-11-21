@@ -99,6 +99,46 @@
   </div>
 
 <script>
+  //select all the check boxes 
+  //get the first selected check
+  //get the last selected check
+  //addEventListener to them 
+    //add css style to all selected items.
+
+  
+
+  var checks = document.querySelectorAll('.inbox input[type=checkbox]');
+  let lastKeyChecked;
+
+  checks.forEach(check => check.addEventListener('click', function(e) {
+    let inBetween = false;
+    if (e.shiftKey && this.checked) {
+
+      checks.forEach(check => {
+        console.dir(check);
+        if (check === this || check === lastKeyChecked) {
+          inBetween = !inBetween;
+          console.log('Starting to check them in between');
+        }
+
+        if (inBetween) {
+          check.checked = true;
+        }
+      })
+      
+    }
+    lastKeyChecked = this;
+
+
+  }));
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
