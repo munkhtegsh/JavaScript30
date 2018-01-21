@@ -50,6 +50,6 @@ ranges.forEach(range => range.addEventListener('mousemove', handleRangeUpdate));
 
 let mousedown = false;
 progress.addEventListener('click', progressMove); //moves the video by clicking on the progress.
-progress.addEventListener('mousemove', (e) => mousedown && progressMove(e)); 
+progress.addEventListener('mousemove', (w) => mousedown && progressMove(e)); 
 progress.addEventListener('mousedown', () => mousedown = true); 
 progress.addEventListener('mouseup', () => mousedown = false); 
